@@ -1,0 +1,106 @@
+*{
+    padding: 0%;
+    margin: 0%;
+    font-family: Roboto;
+}
+
+body {
+    background-color: rgba(224, 219, 212, 0.762);
+}
+
+header {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+    font-size: 10px;
+    font-weight: 100;
+    box-shadow: 0 0px 20px rgba(0, 0, 0, 0.2);
+}
+
+header > img {
+    width: 40px;
+}
+
+main {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form{
+    display: flex;
+    gap: 30px;
+}
+
+input{
+    padding: 15px 30px;
+    border: none;
+    border-radius: 30px;
+}
+
+form > button{
+    background-color: rgb(210, 114, 76);;
+    border: none;
+    border-radius: 30px;
+    color: white;
+    padding: 15px 30px;
+    cursor: pointer;
+}
+
+
+main > h3 {
+    margin-bottom: 30px;
+    color: rgb(210, 114, 76);
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+    max-width: 50vw;
+}
+
+.ingredients-list{
+    display: flex;
+    gap: 10px;
+}
+
+.ingredients-list > button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.get-recipe-container{
+    margin: 30px 0;
+    background-color: rgba(96, 93, 93, 0.559);
+    padding: 10px 30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    gap: 30px;
+}
+
+.get-recipe-container > button {
+    background-color: rgb(188, 103, 70);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.recipe-by-ai{
+    background-color: rgba(96, 93, 93, 0.559);
+    color: white;
+    line-height: 30px;
+    padding: 30px;
+    border-radius: 10px;
+}
