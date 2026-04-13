@@ -1,10 +1,17 @@
-import { useState } from "react"
+import { useState, useEffect, useRef } from "react"
 import  IngredientsList from './IngredientsList.jsx'
 import {getRecipeFromHF} from '../../ai'
 
 export default function Main() {
     const [ingredients, setIngredients] = useState([])
     const [recipe, setRecipe] = useState("")
+    
+    const recipeView = useRef(null)
+    useEffect(()=>{
+        if (recipe && recipeView.current) {
+            recipeView.current.scrollIntoView({behavior : 'smooth'})
+        }
+    }, [recipe])
 
     function deleteIngredient(ingredient){
         setIngredients(prevIngredients => {
@@ -36,6 +43,7 @@ export default function Main() {
             </form>
             {ingredients.length > 0 ? 
             <IngredientsList
+                ref={recipeView}
                 ingredients={ingredients}
                 getRecipe={getRecipe}
                 deleteIngredient={deleteIngredient}
