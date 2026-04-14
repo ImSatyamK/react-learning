@@ -1,4 +1,99 @@
 *{
     background-color: black;
     color: white;
+    text-align: center;
+    padding: 0%;
+    margin: 0%;
+    font-family: sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+}
+
+#root {
+    max-width: 500px;
+}
+
+header {
+    margin: 50px;
+}
+
+#langDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 200px;
+}
+
+#langDivRow1, #langDivRow2{
+    display: flex;
+    gap: 10px;
+}
+
+.langCards{
+    padding: 5px 10px;
+    border-radius: 2px;
+    font-size: 10px;
+}
+
+.wordStage {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.letterBox {
+    height: 30px;
+    width: 30px;
+    background-color: rgba(229, 232, 232, 0.543);
+    margin: 10px;
+    border-bottom: 2px solid white;
+    border-radius: 3px;
+}
+
+button{
+    background-color: rgb(218, 186, 92);
+    border: none;
+    font-size: 10px;
+    padding: 10px;
+    margin: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+#resultCard {
+    position: absolute;
+    height: 50px;
+    width: 300px;
+    background-color: green;
+    top: 160px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    border-radius: 5px;
+}
+
+#resultCard > h3, #resultCard > p {
+    background-color: green;
+}
+
+#newGameBtn {
+    background-color: rgb(67, 152, 185);
+    height: auto;
+    width: auto;
+    border-radius: 3px;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
