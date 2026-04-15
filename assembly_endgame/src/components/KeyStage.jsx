@@ -16,29 +16,53 @@ const langCards = languages.map((language) => {
     )
 })
 
+let resultShown = false
+let lives = 8
 const ALPHABETS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 export default function Main(props) {
-
+    console.log(props.word)
     let letterArr = [...props.word]
     const [correctLetters, setCorrectLetters] = useState(Array(props.word.length).fill(null))
     const [guessedLetter, setGuessedLetter] = useState({})
 
     function keyPress(key) {
+        if (lives === 0) return
         if (guessedLetter[key]) return
         setGuessedLetter(prev => ({ ...prev, [key]: true }))
 
-        letterArr.forEach((char, i) => {
-            if (char.toLowerCase() === key.toLowerCase()) {
+        const indexes = letterArr.reduce((acc, char, i) => {
+            if (char.toLowerCase() === key.toLowerCase()) acc.push(i)
+            return acc
+        }, [])
+        console.log(indexes)
+        if (indexes.length > 0) {
+            indexes.forEach((i)=> {
                 setCorrectLetters(prev => {
-                    let updated = [...prev]
-                    updated[i] = key
-                    return updated
-                })
-            } else {
+                let updated = [...prev]
+                updated[i] = key
+                return updated
+            })})
+        } else {
+            lives -= 1
+            console.log(lives)
+        }
+    }
 
-            }
-        })
+    function showResult() {
+        if (!correctLetters.includes(null)) {
+            resultShown = true
+            return <div id="resultCard" style={{ backgroundColor: 'green' }}>
+                <h3 style={{ backgroundColor: 'green' }}>You win!</h3>
+                <p style={{ backgroundColor: 'green' }}>Well done!</p>
+            </div>
+        } else if (lives === 0) {
+            resultShown = true
+            return <div id="resultCard" style={{ backgroundColor: 'red' }}>
+                <h3 style={{ backgroundColor: 'red' }}>Game over!</h3>
+                <p style={{ backgroundColor: 'red' }}>You lose! Better start learning Assembly!</p>
+            </div>
+        }
     }
 
     const keyboard = ALPHABETS.map((key) => <button
@@ -53,11 +77,7 @@ export default function Main(props) {
 
     return (
         <>
-            <div id="resultCard">
-                <h3>YOU WON!</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur</p>
-            </div>
-
+            {showResult()}
             <div id='langDiv'>
                 <div id='langDivRow1'>{langCards.slice(0, 5)}</div>
                 <div id='langDivRow2'>{langCards.slice(5)}</div>
@@ -67,7 +87,7 @@ export default function Main(props) {
 
             <div id="btns">
                 <div>{keyboard}</div>
-                <button id="newGameBtn">NEW GAME</button>
+                {resultShown ? <button id="newGameBtn">NEW GAME</button>: undefined}
             </div>
         </>
     )
