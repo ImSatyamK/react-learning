@@ -144,3 +144,11 @@ button.wrong {
     align-items: center;
     color: rgb(142, 12, 12);
 }
+
+.disableKeys {
+    opacity: 0.5;
+}
+
+.disableKeys > button{
+    cursor: not-allowed;
+}

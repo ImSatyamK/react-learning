@@ -1,20 +1,31 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { languages } from '../data/languages'
 import { getRandomWord } from '../utils/getRandomWord'
+import { getFarewellText } from '../utils/getFarewellText'
 
 const ALPHABETS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 
 export default function Main() {
     const [word, setWord] = useState(getRandomWord())
+    // console.log(word)
     const letterArr = [...word]
     const [correctLetters, setCorrectLetters] = useState(Array(word.length).fill(null))
     const [guessedLetter, setGuessedLetter] = useState({})
     const [lives, setLives] = useState(8)
+    const [isWrong, setIsWrong] = useState(false)
 
     const corrected = [...(word.toUpperCase())]
     const isWon = !correctLetters.includes(null)
     const isLost = lives === 0
     const isOver = isWon || isLost
+
+    function farewell() {
+        const lostCount = 8 - lives
+
+        if (lostCount <= 0) return null
+
+        return getFarewellText(languages[lostCount - 1].name)
+    }
 
     const langCards = languages.map((language, index) => (
         <h5
@@ -37,14 +48,16 @@ export default function Main() {
         }, [])
 
         if (indexes.length > 0) {
-            indexes.forEach((i) => {
-                setCorrectLetters(prev => {
-                    const updated = [...prev]
-                    updated[i] = key
-                    return updated
+            setIsWrong(false)
+            setCorrectLetters(prev => {
+                let updated = [...prev]
+                indexes.forEach((i) => {
+                    updated[i] = key    
                 })
+                return updated
             })
         } else {
+            setIsWrong(true)
             setLives(prev => prev - 1)
         }
     }
@@ -55,6 +68,7 @@ export default function Main() {
         setCorrectLetters(Array(newWord.length).fill(null))
         setGuessedLetter({})
         setLives(8)
+        setIsWrong(false)
     }
 
     const keyboard = ALPHABETS.map((key) => (
@@ -75,8 +89,8 @@ export default function Main() {
         <div
             key={i}
             className={correctLetters[i] ? 'letterBox' : (isLost ? 'missingLetter' : 'letterBox')}
-            >{correctLetters[i] ? correctLetters[i] : (isLost ? corrected[i] : correctLetters[i])}
-            </div>
+        >{correctLetters[i] ? correctLetters[i] : (isLost ? corrected[i] : correctLetters[i])}
+        </div>
     ))
 
     return (
@@ -93,6 +107,10 @@ export default function Main() {
                     <p style={{ backgroundColor: 'red' }}>Better start learning Assembly!</p>
                 </div>
             )}
+            {isWrong && !isLost ? (<div id="resultCard" style={{ backgroundColor: 'purple' }}>
+                <h3 style={{ backgroundColor: 'purple' }}>{farewell()}</h3>
+            </div>) : undefined
+            }
 
             <div id='langDiv'>
                 <div id='langDivRow1'>{langCards.slice(0, 5)}</div>
@@ -102,7 +120,9 @@ export default function Main() {
             <section className="wordStage">{wordStage}</section>
 
             <div id="btns">
-                <div>{keyboard}</div>
+                <div
+                className={isLost || isWon ? 'disableKeys' : 'keyboard'}
+                >{keyboard}</div>
                 {isOver && <button id="newGameBtn" onClick={resetGame}>NEW GAME</button>}
             </div>
         </>
