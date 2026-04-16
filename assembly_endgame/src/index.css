@@ -131,3 +131,16 @@ button.wrong {
     justify-content: center;
     align-items: center;
 }
+
+.missingLetter {
+    height: 30px;
+    width: 30px;
+    background-color: rgba(229, 232, 232, 0.543);
+    margin: 10px;
+    border-bottom: 2px solid rgb(142, 12, 12);
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(142, 12, 12);
+}

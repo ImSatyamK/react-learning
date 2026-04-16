@@ -11,6 +11,7 @@ export default function Main() {
     const [guessedLetter, setGuessedLetter] = useState({})
     const [lives, setLives] = useState(8)
 
+    const corrected = [...(word.toUpperCase())]
     const isWon = !correctLetters.includes(null)
     const isLost = lives === 0
     const isOver = isWon || isLost
@@ -71,7 +72,11 @@ export default function Main() {
     ))
 
     const wordStage = word.split('').map((_, i) => (
-        <div key={i} className="letterBox">{correctLetters[i]}</div>
+        <div
+            key={i}
+            className={correctLetters[i] ? 'letterBox' : (isLost ? 'missingLetter' : 'letterBox')}
+            >{correctLetters[i] ? correctLetters[i] : (isLost ? corrected[i] : correctLetters[i])}
+            </div>
     ))
 
     return (
