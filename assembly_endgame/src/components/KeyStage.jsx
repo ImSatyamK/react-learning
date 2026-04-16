@@ -48,6 +48,14 @@ export default function Main() {
         }
     }
 
+    function resetGame() {
+        const newWord = getRandomWord()
+        setWord(newWord)
+        setCorrectLetters(Array(newWord.length).fill(null))
+        setGuessedLetter({})
+        setLives(8)
+    }
+
     const keyboard = ALPHABETS.map((key) => (
         <button
             key={key}
@@ -90,7 +98,7 @@ export default function Main() {
 
             <div id="btns">
                 <div>{keyboard}</div>
-                {isOver && <button id="newGameBtn">NEW GAME</button>}
+                {isOver && <button id="newGameBtn" onClick={resetGame}>NEW GAME</button>}
             </div>
         </>
     )
