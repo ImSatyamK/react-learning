@@ -9,6 +9,7 @@ A collection of React projects built while learning React.
 | `first_react` | My first React app — a static page with fun facts about React |
 | `travel_journal` | A travel journal displaying hardcoded destinations |
 | `chef_ai` | An AI-powered recipe generator using Hugging Face + Llama 3.1 |
+| `assembly_endgame` | A simple word guessing game with indication on right or wrong guesses |
 
 ## Getting Started
 
