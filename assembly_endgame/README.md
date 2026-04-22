@@ -1,16 +1,79 @@
-# React + Vite
+# Assembly: Endgame
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Wordle-inspired word guessing game where you fight to save programming from Assembly language. Guess the hidden word before you run out of lives — or every programming language gets wiped out one by one.
 
-Currently, two official plugins are available:
+🔗 **Live Demo**: [https://react-learning-lydd.vercel.app/](https://react-learning-lydd.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## How to Play
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- A secret programming-related word is chosen at random
+- Guess letters using the on-screen keyboard
+- You have **8 lives** — each wrong guess eliminates a programming language
+- Reveal the full word before all languages are gone to win
+- If you lose, Assembly takes over... and the word is revealed
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Features
+
+- Random word selected on every new game
+- On-screen keyboard with color feedback — green for correct, red for wrong
+- Language cards that get eliminated as you lose lives
+- Win/lose result card shown at the end
+- New Game button to reset and play again
+
+---
+
+## Tech Stack
+
+- **React** — UI and state management
+- **CSS** — custom styling with no UI libraries
+- **Vite** — development and build tool
+
+---
+
+## Project Structure
+
+```
+src/
+├── components/
+│   └── Main.jsx        # core game component
+├── data/
+│   ├── languages.js    # programming language cards data
+│   └── words.js        # word list
+├── utils/
+│   └── getRandomWord.js
+├── App.jsx
+└── main.jsx
+```
+
+---
+
+## Getting Started
+
+```bash
+# clone the repo
+git clone https://github.com/your-username/assembly-endgame.git
+
+# install dependencies
+cd assembly-endgame
+npm install
+
+# start the dev server
+npm run dev
+```
+
+---
+
+## What I Learned
+
+Built this project to practice core React concepts including:
+
+- `useState` for managing game state
+- Derived state instead of redundant state variables
+- Lifting state up and passing props
+- Conditional rendering in JSX
+- Immutable state updates with array spread
+- Component structure and separation of concerns
