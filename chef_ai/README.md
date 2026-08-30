@@ -1,6 +1,7 @@
 # Chef AI 🍳
 
 A React app that suggests recipes based on ingredients you have at home, powered by the Llama 3.1 model via Hugging Face Inference API.
+[Live Demo ](https://react-learning-three-xi.vercel.app/)
 
 ## Features
 
